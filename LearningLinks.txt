@@ -1,0 +1,20 @@
+
+Data Science:
+https://www.quora.com/How-can-I-become-a-data-scientist-1?redirected_qid=59455
+https://github.com/FavioVazquez/ds-cheatsheets?files=1
+https://medium.com/cracking-the-data-science-interview/how-to-think-like-a-data-scientist-in-12-steps-157ea8ad5da8
+https://getpocket.com/a/read/2275254034
+https://www.labri.fr/perso/nrougier/from-python-to-numpy/
+
+CompSci/Math/Misc:
+https://medium.freecodecamp.org/660-free-online-programming-computer-science-courses-you-can-start-in-october-99725c056812
+https://teachyourselfcs.com/
+
+Python:
+https://www.fullstackpython.com/table-of-contents.html
+https://www.learndatasci.com/tutorials/ultimate-guide-web-scraping-w-python-requests-and-beautifulsoup/
+
+SQL:
+https://softwareengineering.stackexchange.com/questions/181651/are-these-sql-concepts-for-beginners-intermediate-or-advanced-developers
+https://app.bytescout.com/sql-trainer/index.html
+https://selectstarsql.com/
