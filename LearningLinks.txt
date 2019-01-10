@@ -5,6 +5,7 @@ https://github.com/FavioVazquez/ds-cheatsheets?files=1
 https://medium.com/cracking-the-data-science-interview/how-to-think-like-a-data-scientist-in-12-steps-157ea8ad5da8
 https://getpocket.com/a/read/2275254034
 https://www.labri.fr/perso/nrougier/from-python-to-numpy/
+https://towardsdatascience.com/data-science-project-flow-for-startups-282a93d4508d
 
 CompSci/Math/Misc:
 https://medium.freecodecamp.org/660-free-online-programming-computer-science-courses-you-can-start-in-october-99725c056812
