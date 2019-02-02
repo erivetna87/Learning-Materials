@@ -1,4 +1,9 @@
 
+
+Amazing Resources:
+https://medium.freecodecamp.org/free-online-programming-computer-science-courses-you-can-start-in-february-e621d959e64
+
+
 Data Science:
 https://www.quora.com/How-can-I-become-a-data-scientist-1?redirected_qid=59455
 https://github.com/FavioVazquez/ds-cheatsheets?files=1
