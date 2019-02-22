@@ -1,0 +1,62 @@
+# COSC 4347/5347
+# Introduction to R
+# Dr. Schumaker, to whom you owe all your money and any other assets of value
+
+# Clear any existing user-defined objects
+rm(list=ls())
+
+# Import the Zillow csv file
+setwd("/home/rschumaker/Desktop") #Use getwd() to see existing working directory
+Zillow = read.csv("Zillow Home Data Oct 2017.csv", header = TRUE)
+
+# Sorting data
+sort.byState.Zillow <- with(Zillow, Zillow[order(State),])
+sort.byStateandMetro.Zillow <- with(Zillow, Zillow[order(State, Metro),])
+
+# Filtering data
+filter.Top10SizeRank <- head(sort(Zillow$SizeRank, decreasing=FALSE), n=10)
+filter.byState <- Zillow[Zillow$State == 'TX',]
+filter.byStateandMetro <- filter.byState[filter.byState$Metro == 'Dallas-Fort Worth',]
+
+# Descriptive Statistics
+mean(Zillow$X2017.09, na.rm=TRUE)
+#standard error - https://www.r-bloggers.com/standard-deviation-vs-standard-error/
+median(Zillow$X2017.09, na.rm=TRUE)
+#mode - R does not natively calculate mode https://www.tutorialspoint.com/r/r_mean_median_mode.htm
+sd(Zillow$X2017.09, na.rm=TRUE)
+var(Zillow$X2017.09, na.rm=TRUE)
+library(e1071) #kurtosis and skewness requires this library
+kurtosis(Zillow$X2017.09, na.rm=TRUE)
+skewness(Zillow$X2017.09, na.rm=TRUE)
+range(Zillow$X2017.09, na.rm=TRUE)
+min(Zillow$X2017.09, na.rm=TRUE)
+max(Zillow$X2017.09, na.rm=TRUE)
+sum(as.numeric(Zillow$X2017.09, na.rm=TRUE)) #R treats integers as 32bit. Use as.numeric as a workaround for larger values
+length(Zillow$X2017.09) #returns number of elements in a vector
+
+# Charting data (Continuous)
+filter.Tyler <- filter.byState[filter.byState$Metro == 'Tyler',]
+Tyler.subset <- filter.Tyler[c(match("X2010.02", names(filter.Tyler)):match("X2017.09",names(filter.Tyler)))]
+library(reshape2) 
+Tyler.subset <- melt(Tyler.subset) #must reorient dataframe from rows to columns
+colnames(Tyler.subset) <- c('Time', 'Price') #rename column headers appropriately
+library(ggplot2) #Tools -> Install Packages -> ggplot2
+ggplot(data=Tyler.subset, aes(x=Time, y=Price, group=1)) + geom_line(color='blue') #plots the line chart
+
+# Histogram (Frequency Distribution)
+hist(Tyler.subset$Price, col="blue", breaks=seq(105000,155000,by=10000), xlim=c(115000, 165000), ylim=c(0, 60), ylab="Frequency", xlab="Price", main="Tyler Home Prices")
+
+# Box and Whisker Plot (Freq Dist Across Multiple Data)
+filter.Dallas <- filter.byState[filter.byState$CountyName == 'Dallas',]
+Dallas.subset <- filter.Dallas[c(match("RegionName", names(filter.Dallas)), match("X2012.09", names(filter.Dallas)):match("X2017.09",names(filter.Dallas)))]
+Dallas.subset <- melt(Dallas.subset)
+Dallas.subset <- Dallas.subset[,!names(Dallas.subset) %in% c("variable")]
+colnames(Dallas.subset) <- c('RegionName', 'Price')
+ggplot(Dallas.subset, aes(RegionName, Price)) + geom_boxplot() + xlab("City") + ggtitle("Dallas Metro Home Prices") + theme(axis.text.x=element_text(angle=90,hjust=1))
+
+# Moving Average
+filter.Boston <- Zillow[Zillow$State == 'MA',] <- Zillow[Zillow$RegionName == 'Boston',] 
+Boston.subset <- filter.Boston[c(match("RegionName", names(filter.Boston)), match("X1996.04", names(filter.Boston)):match("X2017.09", names(filter.Boston)))]
+Boston.subset <- melt(Boston.subset)
+colnames(Boston.subset) <- c('RegionName', 'Time', 'Price')
+Boston.subset["MovingAvg"] = c(filter(Boston.subset$Price, rep(1/12,12)))
