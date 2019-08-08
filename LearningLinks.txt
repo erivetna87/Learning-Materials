@@ -2,6 +2,7 @@
 
 Amazing Resources:
 https://medium.freecodecamp.org/free-online-programming-computer-science-courses-you-can-start-in-february-e621d959e64
+https://chrisalbon.com/
 
 
 Data Science:
